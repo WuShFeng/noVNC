@@ -96,17 +96,7 @@
 
         UI.start({ settings: { defaults: defaults,
                                mandatory: mandatory } });
-        let audioElement = null;
-        UI.rfb.addEventListener("noVNC_connect_button", () => {
-            if (!webrtcIframe) {
-                audioElement = document.createElement("audio");
-                audioElement.src = "/audio";
-                audioElement.autoplay = true;
-                audioElement.controls = false;
-                audioElement.style.display = "none";
-                document.body.appendChild(audioElement);
-            }
-        });
+
     </script>
 </head>
 
