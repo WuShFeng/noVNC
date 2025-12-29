@@ -1166,9 +1166,9 @@ const UI = {
                 },
                 onTrack: (evt) => {
                     if (evt.track.kind === "audio") {
-                    const audio = document.getElementById('webrtc')
-                    audio.srcObject = evt.streams[0];
-                    audio.play()
+                        const audio = document.getElementById('webrtc')
+                        audio.srcObject = evt.streams[0];
+                        audio.play()
                     }
                 },
             });
