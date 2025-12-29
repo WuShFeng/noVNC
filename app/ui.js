@@ -1158,12 +1158,6 @@ const UI = {
 
         // Do this last because it can only be used on rendered elements
         UI.rfb.focus();
-        audioElement = document.createElement("audio");
-        audioElement.src = "/audio";
-        audioElement.autoplay = true;
-        audioElement.controls = false;
-        audioElement.style.display = "none";
-        document.body.appendChild(audioElement);
     },
 
     disconnectFinished(e) {
