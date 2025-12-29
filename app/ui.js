@@ -28,7 +28,7 @@ const UI = {
 
     connected: false,
     desktopName: "",
-
+    audio_reader: null,
     statusTimeout: null,
     hideKeyboardTimeout: null,
     idleControlbarTimeout: null,
@@ -1158,6 +1158,20 @@ const UI = {
 
         // Do this last because it can only be used on rendered elements
         UI.rfb.focus();
+        UI.audio_reader?.close()
+        UI.audio_reader = new MediaMTXWebRTCReader({
+                url: new URL('audio/whep', window.location.href) + window.location.search,
+                onError: (err) => {
+                    console.error(err)
+                },
+                onTrack: (evt) => {
+                    if (evt.track.kind === "audio") {
+                    const audio = document.getElementById('webrtc')
+                    audio.srcObject = evt.streams[0];
+                    audio.play()
+                    }
+                },
+            });
     },
 
     disconnectFinished(e) {
@@ -1198,6 +1212,7 @@ const UI = {
 
         UI.openControlbar();
         UI.openConnectPanel();
+        UI.audio_reader?.close()
     },
 
     securityFailed(e) {
